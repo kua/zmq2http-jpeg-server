@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+      <meta content="utf-8" http-equiv="encoding">
+      <title>Test http jpeg server</title>
+      <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+      <script>
+         $(document).ready(function() {
+           function update_image(el, endpoint) { $(el).attr("src", endpoint + "/" + Math.random()); };
+         
+           $("#my_image").load ( function() {                           update_image('#my_image', 'http://${host_addr}:8001'); } );
+           $("#my_image").error( function() { setTimeout ( function() { update_image('#my_image', 'http://${host_addr}:8001'); }, 100) } );
+         });
+      </script>
+   </head>
+   <body>
+      <h3>Test http jpeg server</h3>
+      <div style="font-size: 0px; height: 512px; width: 512px;">
+         <img id="my_image" width="640px" border="0" src="http://${host_addr}:8001"></img>
+      </div>
+   </body>
+</html>
